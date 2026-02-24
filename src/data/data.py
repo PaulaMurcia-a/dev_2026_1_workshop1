@@ -47,21 +47,16 @@ class Data:
         Returns:
             list: Lista sin elementos duplicados
         """
-        nueva_lista = []
+        resultado = []
+        vistos = []
 
         for elemento in lista:
-
-         existe = False
-
-        for existente in nueva_lista:
-            if elemento == existente and type(elemento) == type(existente):
-                existe = True
-                break
-
-        if not existe:
-            nueva_lista.append(elemento)
-
-        return nueva_lista        
+           clave = (elemento,type(elemento))
+           if clave not in vistos :
+              vistos.append(clave)
+              resultado.append(elemento)
+              
+        return resultado        
     
     def merge_ordenado(self, lista1, lista2):
         """
@@ -219,22 +214,6 @@ class Data:
         Returns:
             list: Matriz transpuesta
         """
-        if matriz == []:
+        if not matriz:
          return []
-
-        filas = len(matriz)
-        columnas = len(matriz[0])
-
-        transpuesta = []
-
-        for j in range(columnas):
-
-          nueva_fila = []
-
-        for i in range(filas):
-
-            nueva_fila.append(matriz[i][j])
-
-        transpuesta.append(nueva_fila)
-
-        return transpuesta
+        return [[matriz[i][j] for i in range(len(matriz))] for j in range(len(matriz[0]))]
