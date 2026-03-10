@@ -146,22 +146,28 @@ class Conversion:
             romano_a_decimal("MCMXCIV") -> 1994
         """
         valores = {
-        "I": 1, "V": 5, "X": 10,
-        "L": 50, "C": 100,
-        "D": 500, "M": 1000
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
         }
 
         total = 0
+        i = 0
 
-        for i in range(len(romano)):
-         valor_actual = valores[romano[i]]
+        while i < len(romano):
+            if i + 1 < len(romano) and valores[romano[i]] < valores[romano[i + 1]]:
+                total += valores[romano[i + 1]] - valores[romano[i]]
+                i += 2
+            else:
+                total += valores[romano[i]]
+                i += 1
 
-        if i + 1 < len(romano) and valor_actual < valores[romano[i + 1]]:
-            total -= valor_actual
-        else:
-            total += valor_actual
         return total
-
+        
     def texto_a_morse(self, texto):
         """
         Convierte texto a código Morse.
