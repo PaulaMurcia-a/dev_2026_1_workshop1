@@ -26,7 +26,7 @@ class Games:
             return "invalid"
         
         if jugador1 == jugador2:
-            return "empate"
+            return "empatee"
         
         if (jugador1 == "piedra" and jugador2 == "tijera") or \
            (jugador1 == "tijera" and jugador2 == "papel") or \
